@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8000:8000" # Host:Container
+    volumes:
+      - ./backend:/app/backend # Mount local backend code for hot reloading
+    env_file:
+      - ./backend/.env.example # Load environment variables for the backend
+    depends_on:
+      db:
+        condition: service_healthy # Wait for db to be healthy
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000" # Host:Container
+    volumes:
+      - ./frontend/src:/app/frontend/src # Mount local src for hot reloading
+      # You might also want to mount public if you change things there often
+      # - ./frontend/public:/app/frontend/public
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    stdin_open: true # For react-scripts, to keep the container running interactively
+    tty: true       # For react-scripts
+
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/ # Persist data
+    env_file:
+      - ./backend/.env.example # Use the same env vars for DB credentials
+    ports:
+      - "5432:5432" # Expose PostgreSQL port to host (optional, for direct DB access)
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+volumes:
+  postgres_data: # Define a named volume for data persistence
+
+networks:
+  app-network:
+    driver: bridge

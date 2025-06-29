@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+venv/
+env/
+.env
+*.env.*
+!*.env.example
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json # Optional: some prefer to commit this, some don't
+# build/ # Already covered by generic build/
+# dist/  # Already covered by generic dist/
+
+# IDE / Editor specific
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS specific
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Docker
+docker-compose.override.yml
+Dockerfile.local
+
+# Other
+coverage.xml
+.coverage
+*.log
+local_settings.py

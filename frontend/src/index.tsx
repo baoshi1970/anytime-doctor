@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css'; // We'll create this later for basic styling
+import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AuthProvider } from './contexts/AuthContext'; // Import AuthProvider
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider> {/* Wrap App with AuthProvider */}
+      <App />
+    </AuthProvider>
   </React.StrictMode>
 );
 

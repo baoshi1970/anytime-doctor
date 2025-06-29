@@ -1,38 +1,135 @@
+/* General App Styles */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+.App-loading {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+}
+
+/* Navigation Styles */
+.App-nav {
+  background-color: #333;
+  padding: 1rem;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App-nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Center navigation items */
+  gap: 20px; /* Space between nav items */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-nav ul li {
+  display: inline;
+}
+
+.App-nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.App-nav a:hover,
+.App-nav a.active { /* You might need NavLink from react-router-dom for active class */
+  background-color: #555;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1em; /* Match link font size */
+  font-family: inherit; /* Match link font family */
+  border-radius: 4px;
+}
+
+.logout-button:hover {
+  background-color: #555;
+}
+
+
+/* Main Content Area Styles */
+.App-main-content {
+  flex-grow: 1; /* Takes up remaining vertical space */
+  padding: 20px;
+  /* background-color: #f4f4f4; Light background for content area */
+}
+
+/* Chat Component Specific (example, can be moved) */
+.chat-container {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.chat-container h1 {
+  text-align: center;
+  color: #333;
+}
+
+.message-input {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.message-input input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  font-size: 1rem;
+}
+
+.message-input button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.message-input button:hover {
+  background-color: #0056b3;
+}
+
+.messages-log {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  padding: 10px;
+  height: 300px; /* Example fixed height */
+  overflow-y: auto; /* Scroll for overflow */
+  border-radius: 4px;
+}
+
+.messages-log ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.messages-log li {
+  padding: 8px 0;
+  border-bottom: 1px dotted #ccc;
+}
+
+.messages-log li:last-child {
+  border-bottom: none;
 }

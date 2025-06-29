@@ -1,0 +1,24 @@
+# Dockerfile.frontend
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package.json and package-lock.json (or yarn.lock)
+COPY ./frontend/package.json ./
+# If you use package-lock.json, also copy it:
+# COPY ./frontend/package-lock.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the frontend application code
+COPY ./frontend /app/frontend
+
+# Change context to the frontend directory for react-scripts
+WORKDIR /app/frontend
+
+# Expose the port React runs on
+EXPOSE 3000
+
+# Command to start the React development server
+CMD ["npm", "start"]

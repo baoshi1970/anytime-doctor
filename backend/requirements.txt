@@ -1,0 +1,7 @@
+fastapi>=0.100.0
+uvicorn[standard]>=0.20.0
+sqlalchemy>=1.4.0
+psycopg2-binary>=2.9.0 # For PostgreSQL connection
+python-dotenv>=0.20.0 # To load .env files for environment variables
+# websockets library is included with fastapi's websockets support
+# pydantic is a dependency of fastapi
